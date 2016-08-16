@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <style media="screen">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,ol {
+            list-style: none;
+        }
+
+        img {
+            display: inline-block;
+        }
+
+        body {
+            font-size: 100%;
+            font-family: Helvetica,STHeiti,Droid Sans Fallback;
+            -webkit-tap-hightlight-color: rgba(0, 0, 0, 0);
+            -moz-tap-hightlight-color: rgba(0, 0, 0, 0);
+            tap-hightlight-color: rgba(0, 0, 0, 0);
+        }
+
+        body,html {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            -webkit-backface-visibility: hidden;;
+            -moz-backface-visibility: hidden;;
+            backface-visibility: hidden;;
+        }
+
+        dt {
+            display: block;
+        }
+
+        .f12 {
+            font-size: 12px;
+        }
+
+        .fl {
+            float: left;
+        }
+
+        .fr {
+            float: right;
+        }
+
+        .mt25 {
+            margin-top: 25px;
+        }
+
+        .mt36 {
+            margin-top: 36px;
+        }
+
+
+        .cf:after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+
+        .perspective {
+            margin: 0;
+            height: 100%;
+        }
+
+        .load {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #43812b;
+            z-index: 1000;
+        }
+
+        .loadImg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -50px 0 0 -50px;
+            width: 100px;
+            height: 100px;
+        }
+
+        .loadTxt {
+            width: 100px;
+            height: 50px;
+            margin: 0 auto;
+            line-height: 50px;
+            text-align: center;
+            color: #fff86b;
+            font-size: 25px;
+            font-family: Impact,Georgia,"Time New Roman",Times,serif;
+        }
+
+        .circle {
+            background-color: rgba(0, 0, 0, 0.0);
+            border: 5px solid rgba(251, 241, 107, 0.9);
+            opacity: .9;
+            border-right-color: rgba(0, 0, 0, 0);
+            border-left-color: rgba(0, 0, 0, 0);
+            -webkit-box-shadow: 0 0 35px #fbf49c;
+            -ms-box-shadow: 0 0 35px #fbf49c;
+            box-shadow: 0 0 35px #fbf49c;
+            width: 50px;
+            height: 50px;
+            margin: 0 auto;
+            -webkit-border-radius: 50px;
+            -ms-border-radius: 50px;
+            border-radius: 50px;
+            -webkit-animation: spinPulse 1s infinite linear;
+            -moz-animation: spinPulse 1s infinite linear;
+            animation: spinPulse 1s infinite linear;
+        }
+
+        .circle1 {
+            background-color: rgba(0, 0, 0, 0);
+            border: 5px solid rgba(251,241,107,1);
+            opacity: .9;
+            border-left-color: rgba(0,0,0,0);
+            border-right-color: rgba(0, 0, 0, 0);
+            -webkit-box-shadow: 0 0 15px #f4f0d1;
+            -ms-box-shadow: 0 0 15px #f4f0d1;
+            box-shadow: 0 0 15px #f4f0d1;
+            width: 30px;
+            height: 30px;
+            margin: 0 auto;
+            position: relative;
+            top: -50px;
+            -webkit-border-radius: 50%;
+            -ms-border-radius: 50%;
+            border-radius: 50%;
+            -webkit-animation: spinoffPulse 1s infinite linear;
+            -ms-animation: spinoffPulse 1s infinite linear;
+            animation: spinoffPulse 1s infinite linear;
+        }
+
+        /*global*/
+
+        .global {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+
+        .screen {
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+
+        .ease {
+            -webkit-transition: all 1s ease-in-out;
+            transition: all 1s ease-in-out;
+        }
+
+        .animated {
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+
+        .layer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .global,.screen,.layer {
+            z-index: 1;
+        }
+
+        .layer1 {
+            position: relative;
+            background: url('http://mat1.gtimg.com/sports/worldcup2014/match/page_1.jpg') top center no-repeat;
+            -webkit-background-size: cover;
+            background-size: cover;
+
+        }
+
+        .layer1 .inner {
+            width: 100%;
+            height: 100%;
+        }
+
+        .layer1 .hd {
+            padding: 10px;
+            color: #9bc894;
+        }
+
+        .layer1 .bd {
+            position: absolute;
+            left: 0;
+            top: 7%;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+
+        .layer1 .animated .mofang {
+            opacity: 1;
+            -webkit-animation: mofang 1.3s linear;
+            animation: mofang 1.3s linear;
+        }
+
+        /*ft*/
+        .layer1 .ft {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .layer1 .ft .btn {
+            position: relative;
+            height: 37px;
+            margin: 0 auto;
+            text-align: center;
+            color: #435d50;
+            font:16px/32px "微软雅黑";
+        }
+
+        .layer1 .ft .btn1 {
+            background: url('http://mat1.gtimg.com/sports/worldcup2014/match/btn_1.png') top center no-repeat;
+            background-size: 222px 84px;
+        }
+
+        .layer1 .ft .btn2 {
+            background: url('http://mat1.gtimg.com/sports/worldcup2014/match/btn_2.png') top center no-repeat;
+            background-size:277px 84px;
+        }
+
+        .layer1 .ft .btn3 {
+            background: url('http://mat1.gtimg.com/sports/worldcup2014/match/btn_3.png') top center no-repeat;
+            background-size:320px 84px;
+        }
+
+        .layer1 .ft .btn4 {
+            background: url('http://mat1.gtimg.com/sports/worldcup2014/match/btn_4.png') top center no-repeat #AEE433;
+            background-size:320px 84px;
+                color: #268f11;
+        }
+
+        .layer1 .animated .btn {
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+            -webkit-animation-name: bounceIn;
+            animation-name: bounceIn;
+        }
+
+        .layer1 .animated .btn1 {
+            -webkit-animation-delay: 1.5s;
+            animation-delay: 1.5s;
+        }
+
+        .layer1 .animated .btn2 {
+            -webkit-animation-delay: 1s;
+            animation-delay: 1s;
+        }
+
+        .layer1 .animated .btn3 {
+            -webkit-animation-delay: .5s;
+            animation-delay: .5s;
+        }
+
+        .layer1 .animated .btn4 {
+            -webkit-animation-delay: 0s;
+            animation-delay: 0s;
+        }
+
+        .layer1 .ft .btn:before {
+            position: absolute;
+            top: -9px;
+            left: 50%;
+            margin-left: 35px;
+            content: '';
+            width: 51px;
+            height: 12px;
+        }
+
+        .layer1 .ft .btn1:before {
+          background: url(http://mat1.gtimg.com/sports/worldcup2014/match/btn_arr_1.png) no-repeat;
+          background-size: 51px 12px;
+        }
+
+        .layer1 .ft .btn2:before {
+          background: url(http://mat1.gtimg.com/sports/worldcup2014/match/btn_arr_2.png) no-repeat;
+          background-size: 51px 12px;
+        }
+
+        .layer1 .ft .btn3:before {
+          background: url(http://mat1.gtimg.com/sports/worldcup2014/match/btn_arr_3.png) no-repeat;
+          background-size: 51px 12px;
+        }
+
+        .layer1 .ft .btn4:before {
+          background: url(http://mat1.gtimg.com/sports/worldcup2014/match/btn_arr_4.png) no-repeat;
+          background-size: 51px 12px;
+        }
+
+        .layer1 .ft .btn.btnAnimate {
+            -webkit-animation: btn 1s;
+            animation: btn 1s;
+        }
+
+
+
+
+        @-webkit-keyframes spinPulse {
+            0%{
+                -webkit-transform: rotate(160deg);
+                transform: rotate(160deg);
+                opacity: 0;
+                -ms-box-shadow: 0 0 1px #2187e7;
+                box-shadow: 0 0 1px #2187e7;
+            }
+            50%{
+                -webkit-transform: rotate(145deg);
+                transform: rotate(145deg);
+                opacity: 1;
+            }
+            100%{
+                -webkit-transform: rotate(-320deg);
+                transform: rotate(-320deg);
+                opacity: 0;
+            }
+        }
+        @keyframes spinPulse {
+            0%{
+                -webkit-transform: rotate(160deg);
+                transform: rotate(160deg);
+                opacity: 0;
+                -ms-box-shadow: 0 0 1px #2187e7;
+                box-shadow: 0 0 1px #2187e7;
+            }
+            50%{
+                -webkit-transform: rotate(145deg);
+                transform: rotate(145deg);
+                opacity: 1;
+            }
+            100%{
+                -webkit-transform: rotate(-320deg);
+                transform: rotate(-320deg);
+                opacity: 0;
+            }
+        }
+
+        @-webkit-keyframes spinoffPulse {
+            0%{
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100%{
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes spinoffPulse {
+            0%{
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100%{
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @-webkit-keyframes mofang {
+            0%{}
+            50% {
+                -webkit-transform: scale(0);
+                        transform: scale(0);
+                opacity: 0.5;
+            }
+            70% {
+                -webkit-transform: scale(1.5);
+                        transform: scale(1.5);
+                opacity: 0.8;
+            }
+            80% {
+                -webkit-transform: scale(.8);
+                        transform: scale(.8);
+                opacity: 1;
+            }
+            100% {
+                -webkit-transform: scale(1.2);
+                        transform: scale(1.2);
+            }
+        }
+        @keyframes mofang {
+            0%{}
+            50% {
+                -webkit-transform: scale(0);
+                        transform: scale(0);
+                opacity: 0.5;
+            }
+            70% {
+                -webkit-transform: scale(1.5);
+                        transform: scale(1.5);
+                opacity: 0.8;
+            }
+            80% {
+                -webkit-transform: scale(.8);
+                        transform: scale(.8);
+                opacity: 1;
+            }
+            100% {
+                -webkit-transform: scale(1.2);
+                        transform: scale(1.2);
+            }
+        }
+
+        @-webkit-keyframes bounceIn {
+            0% {
+              opacity: 0;
+              -webkit-transform: scale(.3);
+              transform: scale(.3);
+            }
+
+            50% {
+              opacity: 1;
+              -webkit-transform: scale(1.05);
+              transform: scale(1.05);
+            }
+
+            70% {
+              -webkit-transform: scale(.9);
+              transform: scale(.9);
+            }
+
+            100% {
+              opacity: 1;
+              -webkit-transform: scale(1);
+              transform: scale(1);
+            }
+            }
+
+        @keyframes bounceIn {
+            0% {
+              opacity: 0;
+              -webkit-transform: scale(.3);
+              -ms-transform: scale(.3);
+              transform: scale(.3);
+            }
+
+            50% {
+              opacity: 1;
+              -webkit-transform: scale(1.05);
+              -ms-transform: scale(1.05);
+              transform: scale(1.05);
+            }
+
+            70% {
+              -webkit-transform: scale(.9);
+              -ms-transform: scale(.9);
+              transform: scale(.9);
+            }
+
+            100% {
+              opacity: 1;
+              -webkit-transform: scale(1);
+              -ms-transform: scale(1);
+              transform: scale(1);
+            }
+        }
+
+        @-webkit-keyframes btn {
+            0% {height: 37px;}
+            50% {height: 84px;}
+            100% {height: 37px;}
+        }
+
+        @keyframes btn {
+            0% {height: 37px;}
+            50% {height: 84px;}
+            100% {height: 37px;}
+        }
+/*淘汰赛程样式layer2*/
+
+        .layer2 {
+            background-color: #f9ffe7;
+            position: relative;
+        }
+
+        .hd_bd {
+            border-width:30px 15px 8px 15px;
+            border-style: solid;
+            position: relative;
+            text-align: center;
+            line-height: 30px;
+            z-index: 2;
+        }
+
+        .layer2 .hd_bd {
+            color: #435d50;
+            border-color: #fff #55b852 #55b852 #55b852;
+        }
+
+        .hd_bd .tit {
+            color:#435d50;
+            font-size: 18px;
+            position: absolute;
+            width: 100%;
+            top: -30px;
+            left: 0;
+        }
+
+        #js_tab_menu {
+            background-color: #55b852;
+            height: 30px;
+            border-bottom: 4px solid #faf848;
+            padding: 0 9px 0 14px;
+        }
+
+        #js_tab_menu li {
+            display: block;
+            float: left;
+            height: 30px;
+            text-align: center;
+            width: 25%;
+            position: relative;
+        }
+
+        #js_tab_menu li span {
+            position: absolute;
+            display: block;
+            height: 30px;
+            font-size: 18px;
+            color: #fff;
+            line-height: 30px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 34px;
+        }
+
+        #js_tab_menu .on span {
+            background: url('http://mat1.gtimg.com/sports/worldcup2014/match/tab_on.png') no-repeat;
+            background-size: 100% 100%;
+            color:#117d0e;
+        }
+
+        /*tab内容*/
+
+        #js_tab_contents .conitem {
+            position: absolute;
+            padding-top: 19px;
+            top: 72px;
+            bottom: 35px;
+            width: 100%;
+        }
+
+        #js_tab_contents .bg {
+            width: auto;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        #wrap_box, #wrap_box_2 {
+            position: absolute;
+            overflow: auto;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+        #js_tab_contents .two .bg {
+            height: 354px;
+        }
+
+        #scroller_1, #scroller_2 {
+            padding: 20px 0;
+            position: absolute;
+            z-index: 1;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+            width: 100%;
+            -webkit-transform: translateZ(0);
+            -moz-transform: translateZ(0);
+            -ms-transform: translateZ(0);
+            -o-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-text-size-adjust: none;
+            -moz-text-size-adjust: none;
+            -ms-text-size-adjust: none;
+            -o-text-size-adjust: none;
+            text-size-adjust: none;
+        }
+
+        #js_tab_contents .one .bg {
+            height: 747px;
+        }
+
+        #js_tab_contents .three .bg {
+            height: 150px;
+        }
+
+        #js_tab_contents .four .bg {
+            height: 171px;
+            z-index:-1;
+        }
+
+        .layer2 .item {
+            float: left;
+            width: 33%;
+            height: 25%;
+            text-align: center;
+            color: #3C3C3C;
+        }
+
+        .conitem .item {
+            height: 70px;
+            width: 231px;
+            border: 1px solid #ecf6cd;
+            background-color: #fff;
+            margin-left: 17px;
+            position: relative;
+        }
+
+        .layer2 .animate .item {
+            -webkit-animation-duration: 0.5s;
+            animation-duration: 0.5s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+            -webkit-animation-name: flag;
+            animation-name: flag;
+        }
+
+        .conitem .item .num {
+            display: block;
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: 25px;
+            left: -7px;
+            background-color: #55b852;
+            color: #fff;
+            font:15px/20px'Arial';
+        }
+
+        .country_list {
+            display: block;
+            padding-left: 22px;
+            float: left;
+            padding-top: 4px;
+            width: 118px;
+        }
+
+        .country_list li {
+            height: 30px;
+            line-height: 30px;
+            text-align: left;
+        }
+
+        .country_list li span {
+            color:#435d50;
+        }
+
+        .country_list .flag {
+            display: inline-block;
+            height: 17px;
+            width: 17px;
+            float: left;
+            margin: 3px 8px 0 0;
+        }
+
+        .country_list .flag img {
+            height: 17px;
+            width: 17px;
+        }
+
+        .country_list li span {
+            color: #435d50;
+        }
+
+        .country_list .first .score {
+            color: #39a436;
+        }
+
+        .country_list .score {
+            float: right;
+        }
+
+        .conitem .item .des {
+            float: right;
+            width: 70px;
+            margin-right: 20px;
+            padding-top: 5px;
+        }
+
+        .conitem .item .state {
+            display: inline-block;
+            background-color: #a5a5a5;
+            color: #fff;
+        }
+
+        .conitem .not_start .state {
+            background-color: #55b852;
+        }
+
+        .screen_x90 {
+            -webkit-transform: rotateY(0deg) rotateX(90deg);
+            -ms-transform: rotateY(0deg) rotateX(90deg);
+            transform: rotateY(0deg) rotateX(90deg);
+        }
+
+        /*弹出层storyboard*/
+        .storyshadow {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 11;
+            background: rgba(0,0,0,.6);
+        }
+
+        .storydialog {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 270px;
+            height: 308px;
+            margin: 0 0 0 -135px;
+            -webkit-border-radius: 5px;
+            -ms-border-radius: 5px;
+            border-radius: 5px;
+            opacity: 1;
+            z-index: -1;
+            -webkit-transform: translate3d(0,0,0);
+            -ms-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+            -webkit-transform-style: preser-3d;
+            -ms-transform-style: preser-3d;
+            transform-style: preser-3d;
+            -webkit-backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .dialog_index {
+            z-index: 12;
+            left: 50%;
+        }
+
+        .opacity {
+            opacity: 1;
+        }
+
+        .full_screen {
+            position: absolute;
+            margin-left: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            background-color: #78b245;
+            z-index: 12;
+            overflow: hidden;
+        }
+
+        .full_screen .link {
+            position: absolute;
+            left: 0;
+            top: 380px;
+            width: 100%;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .full_screen .close {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            width: 35px;
+            height: 35px;
+            background-color: #04a7de;
+            background: url("http://mat1.gtimg.com/sports/worldcup2014/match/zh_close.png") no-repeat;
+            -webkit-background-size: 35px 35px;
+            background-size: 35px 35px;
+        }
+
+        .bounceIn {
+            -webkit-animation-name: bounceIn;
+            -ms-animation-name: bounceIn;
+            animation-name: bounceIn;
+        }
+
+        /*分组赛layer3*/
+        .screen_x180 {
+            -webkit-transform: rotateY(0deg) rotateX(180deg);
+            -ms-transform: rotateY(0deg) rotateX(180deg);
+            transform: rotateY(0deg) rotateX(180deg);
+        }
+
+        .layer3 {
+            background-color: #77b044;
+        }
+
+        .layer3 .list {
+            width: 267px;
+            height: 267px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin:-134px 0 0 -134px;
+        }
+
+        .layer3 .item {
+            float: left;
+            width: 88px;
+            height: 88px;
+            line-height: 88px;
+            -webkit-border-radius: 2px;
+            -ms-border-radius: 2px;
+            border-radius: 2px;
+            margin: 0 1px 1px 0;
+            background-color: #fff;
+            color:#505150;
+            font-size: 10px;
+            text-align: center;
+        }
+
+        .layer3 .item .group {
+            font-size: 32px;
+        }
+
+        .layer3 .itemlogo {
+            background-color: none;
+            background: url('http://mat1.gtimg.com/sports/worldcup2014/match/zh_logo2.png') no-repeat;
+            background-size: 100%;
+        }
+
+        .layer3 .hd_bd {
+            color:#505150;
+            border-color: #ffd751 transparent transparent transparent;
+        }
+
+        .layer3 .animate .item {
+            -webkit-animation-duration: 1s;
+            -ms-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-fill-mode: both;
+            -ms-animation-fill-mode: both;
+            animation-fill-mode: both;
+            -webkit-animation-delay: .3s;
+            -ms-animation-delay: .3s;
+            animation-delay: .3s;
+        }
+
+        .layer3 .animate .itemA,
+        .layer3 .animate .itemD,
+        .layer3 .animate .itemF {
+            -webkit-animation-name: fadeInLeftBig;
+            -ms-animation-name: fadeInLeftBig;
+            animation-name: fadeInLeftBig;
+        }
+
+        .layer3 .animate .itemD ,.layer3 .animate .itemE{
+            -webkit-animation-delay: .6s;
+            -ms-animation-delay: .6s;
+            animation-delay: .6s;
+        }
+
+        .layer3 .animate .itemB ,.layer3 .animate .itemG{
+            -webkit-animation-delay: .4s;
+            -ms-animation-delay: .4s;
+            animation-delay: .4s;
+        }
+
+        .layer3 .animate .itemB {
+            -webkit-animation-name: fadeInDownBig;
+            -ms-animation-name: fadeInDownBig;
+            animation-name: fadeInDownBig;
+        }
+
+        .layer3 .animate .itemC,
+        .layer3 .animate .itemE,
+        .layer3 .animate .itemH {
+            -webkit-animation-name: fadeInRightBig;
+            -ms-animation-name: fadeInRightBig;
+            animation-name: fadeInRightBig;
+        }
+
+        .layer3 .animate .itemG {
+            -webkit-animation-name: fadeInUpBig;
+            -ms-animation-name: fadeInUpBig;
+            animation-name: fadeInUpBig;
+        }
+
+        @keyframes fadeInLeftBig {
+            0% {
+                opacity: 0;
+                -webkit-transform: translateX(-2000px);
+                -ms-transform: translateX(-2000px);
+                transform: translateX(-2000px);
+            }
+
+            100% {
+                opacity: 1;
+                -webkit-transform: rotateX(0deg);
+                -ms-transform: rotateX(0deg);
+                transform: rotateX(0deg);
+            }
+        }
+
+        @keyframes fadeInRightBig {
+            0% {
+                opacity: 0;
+                -webkit-transform: translateX(2000px);
+                -ms-transform: translateX(2000px);
+                transform: translateX(2000px);
+            }
+
+            100% {
+                opacity: 1;
+                -webkit-transform: rotateX(0deg);
+                -ms-transform: rotateX(0deg);
+                transform: rotateX(0deg);
+            }
+        }
+
+        @keyframes fadeInDownBig {
+            0% {
+                opacity: 0;
+                -webkit-transform: translateY(-2000px);
+                -ms-transform: translateY(-2000px);
+                transform: translateY(-2000px);
+            }
+
+            100% {
+                opacity: 1;
+                -webkit-transform: rotateY(0deg);
+                -ms-transform: rotateY(0deg);
+                transform: rotateY(0deg);
+            }
+        }
+
+        @keyframes fadeInUpBig {
+            0% {
+                opacity: 0;
+                -webkit-transform: translateY(2000px);
+                -ms-transform: translateY(2000px);
+                transform: translateY(2000px);
+            }
+
+            100% {
+                opacity: 1;
+                -webkit-transform: rotateY(0deg);
+                -ms-transform: rotateY(0deg);
+                transform: rotateY(0deg);
+            }
+        }
+
+        .swipe_tip {
+            position: absolute;
+            bottom: 55px;
+            left: 50%;
+            margin-left: -11px;
+            width: 22px;
+            height: 23px;
+            background: url('http://mat1.gtimg.com/sports/worldcup2014/match/swipe_up.png') no-repeat;
+            background-size: 22px 23px;
+            z-index: 5;
+            -webkit-animation: mymove 1s infinite;
+            -ms-animation: mymove 1s infinite;
+            animation: mymove 1s infinite;
+        }
+
+        @keyframes mymove {
+            from {
+                /*bottom: 35px;*/
+                transform: translateY(0px);
+            }
+
+            to {
+                /*bottom: 45px;*/
+                transform: translateY(-10px);
+            }
+        }
+
+        @-webkit-keyframes flag {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+            100% {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+        }
+
+        @keyframes flag {
+            0% {
+                -webkit-transform: scale(0);
+            }
+            100% {
+                -webkit-transform: scale(1);
+            }
+        }
+
+        .screen_x270 {
+            -webkit-transform: rotateY(0deg) rotateX(270deg);
+            -ms-transform: rotateY(0deg) rotateX(270deg);
+            transform: rotateY(0deg) rotateX(270deg);
+        }
+
+        .layer4 {
+            background-color: #51a35c;
+        }
+
+        .layer .inner {
+            width: 100%;
+            height: 100%;
+        }
+
+        .layer4 .hd_bd {
+            color:#435d50;
+            border-color: #fff851 transparent transparent transparent;
+        }
+
+        .hd_bd .tit {
+            color: #435d50;
+            font-size: 18px;
+            position: absolute;
+            width: 100%;
+            top: -30px;
+            left: 0;
+        }
+
+        .timeline {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+        }
+
+        .timeline {
+            position: absolute;
+            top: 45px;
+            bottom: 80px;
+            z-index: 4;
+            width: 100%;
+            height: auto;
+        }
+
+        .timeline_bd {
+            position: absolute;
+            top: 50px;
+            bottom: 50px;
+            width: 100%;
+        }
+
+        .timeline_bd {
+            top: -4px;
+            bottom: 0;
+        }
+
+        .time_scale {
+            width: 2px;
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            background-color: #ccc;
+            left: 50%;
+            margin: 0 0 0 -1px;
+        }
+
+        .time_scale {
+            left: 25%;
+            color: #BFDFA6;
+            background-color: #FFF;
+        }
+
+        .time_scale .arr_top {
+            width: 13px;
+            height: 11px;
+            position: absolute;
+            top: -11px;
+            left: -5px;
+            background: url(http://mat1.gtimg.com/sports/worldcup2014/match/arr_bottom.png) no-repeat;
+            background-size: 13px 11px;
+        }
+
+        .time_scale .go_home {
+            position: absolute;
+            left: -19px;
+            bottom: -38px;
+            width: 38px;
+            height: 38px;
+            background: url(http://mat1.gtimg.com/sports/worldcup2014/match/go_home.png) no-repeat;
+            background-size: 38px 38px;
+            z-index: 222;
+        }
+
+        .linebox {
+            position: relative;
+            height: 100%;
+        }
+
+        #wrapper {
+            position: absolute;
+            overflow: hidden;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+        #scroller {
+            position: absolute;
+            z-index: 1;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+            width: 100%;
+            -webkit-transform: translateZ(0);
+            -moz-transform: translateZ(0);
+            -ms-transform: translateZ(0);
+            -o-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-text-size-adjust: none;
+            -moz-text-size-adjust: none;
+            -ms-text-size-adjust: none;
+            -o-text-size-adjust: none;
+            text-size-adjust: none;
+        }
+
+        .lineinner li {
+            position: relative;
+            padding: 0 5% 30px 30%;
+            overflow: hidden;
+        }
+
+        .lineinner li:nth-of-type(1) {
+            margin-top: 80px;
+        }
+
+        .lineinner li:nth-of-type(1) {
+            margin-top: 0;
+        }
+
+        .layer4 .animate .item {
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+            -webkit-animation-name: fadeInUp;
+            animation-name: fadeInUp;
+        }
+
+        .layer4 .animate .delay0 {
+            -webkit-animation-delay: 0.4s;
+        }
+
+        .lineinner li .dot {
+            position: absolute;
+            top: 10px;
+            left: 25%;
+            margin-left: -5px;
+            width: 6px;
+            height: 6px;
+            background-color: #FFF851;
+            border: 2px solid #fff;
+            border-radius: 8px;
+        }
+
+        .lineinner li .day {
+            width: 22%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            text-align: right;
+            font-size: 16px;
+            color: #0c3a13;
+        }
+
+        .lineinner li .day p {
+            color: #FFF;
+        }
+
+        .lineinner li .box {
+            position: relative;
+            padding: 10px 8px 0;
+            background-color: #F9FFF4;
+            border-radius: 5px;
+            color: #92bd6e;
+        }
+
+        .lineinner li .box:before {
+            position: absolute;
+            left: -7px;
+            top: 11px;
+            content: "";
+            width: 7px;
+            height: 8px;
+            background: url(http://mat1.gtimg.com/sports/worldcup2014/match/arr_left.png) 0 0 no-repeat;
+            background-size: 7px 8px;
+        }
+
+        .lineinner li .box dl {
+            padding-bottom: 10px;
+        }
+
+        .lineinner li .time {
+            border-radius: 5px;
+            padding: 3px 5px;
+            margin-right: 6px;
+            background-color: #92D564;
+            color: #FFF;
+        }
+
+        .lineinner li .text {
+            font-size: 12px;
+            line-height: 14px;
+        }
+
+        .lineinner li .tit {
+            color: #4b4b4b;
+            font-size: 12px;
+            line-height: 18px;
+        }
+
+        .cf:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .lineinner li .num, .lineinner li .hot {
+            background: #F77E00;
+            color: #FFF;
+            padding: 0 2px;
+            border-radius: 10px;
+            margin-left: 2px;
+            font-size: 10px;
+        }
+
+        .layer4 .ft {
+            position: absolute;
+            width: 84%;
+            bottom: 0;
+            left: 0;
+            padding: 45px 8% 8px;
+            z-index: 3;
+        }
+
+        .layer .zh_bar {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 35px;
+            overflow: hidden;
+            text-align: center;
+            z-index: 3;
+        }
+
+        #layer_4 .zh_bar {
+            padding: 45px 0 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="perspective" style="perspective:333.5px">
+        <!-- loading-->
+        <div class="load" style="display:block;">
+            <div class="loadImg">
+                <div class="loadTxt">loading</div>
+                <div class="circle"></div>
+                <div class="circle1"></div>
+            </div>
+        </div>
+        <!-- 首页 -->
+        <div class="global" style="transform:translateZ(-333.5px);display:none;">
+            <div class="screen ease">
+                <section class="layer layer1" style="position:absolute;transform:rotateX(0deg) translateZ(333.5px);">
+                    <div class="inner animated">
+                        <div class="hd cf f12 yh">
+                            <span class="fl">出品:腾讯体育</span>
+                            <span class="fr">创意:腾讯网设计中心</span>
+                        </div>
+                        <div class="bd">
+                            <div class="zh-logo">
+                                <img width="108"src="http://mat1.gtimg.com/sports/worldcup2014/match/zh_logo.png" alt=""></div>
+                            <h1 class="logo">
+                                <img width="320" src="http://mat1.gtimg.com/sports/worldcup2014/match/top_logo3.png" alt=""></h1>
+                            <div  class="mofang">
+                                <img width="260" src="http://mat1.gtimg.com/sports/worldcup2014/match/mofang2.png" alt=""></div>
+                        </div>
+                        <div class="ft">
+                            <div class="btn btn1">淘汰赛赛程</div>
+                            <div class="btn btn2">公组赛程</div>
+                            <div class="btn btn3">完全赛程</div>
+                            <div class="btn btn4">招行网行7.0交易送足彩</div>
+                        </div>
+                    </div>
+                </section>
+                <!-- 淘汰赛 -->
+                <section class="layer layer2" id="layer2" style="position:absolute;transform:rotateX(-90deg) translateZ(333.5px);">
+                    <div class="inner">
+                        <div class="hd hd_bd">
+                            <span class="tit">淘汰赛赛程</span>
+                        </div>
+                        <div class="bd">
+                            <div id="js_tab_menu">
+                                <ul>
+                                    <li class="on"><span>1/8决赛</span></li>
+                                    <li><span>1/4决赛</span></li>
+                                    <li><span>半决赛</span></li>
+                                    <li><span>决赛</span></li>
+                                </ul>
+                            </div>
+                            <div id="js_tab_contents">
+                                <div class="conitem one" style="display: block;">
+    	                        	<div id="wrap_box">
+    		                        	<div id="scroller_1" style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                                            <img class="bg" _src="http://mat1.gtimg.com/sports/worldcup2014/match/line1.png" src="http://mat1.gtimg.com/sports/worldcup2014/match/line1.png">
+                                            <div class="items_box">
+                                                <div class="item not_start">
+                                                    <span class="num">49</span>
+                                                    <ul class="country_list">
+                                                        <li class="first"><span class="flag"><img _src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg" src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg"></span><span class="name">巴西</span><span class="score"></span></li>
+                                                        <li><span class="flag"><img _src="http://img1.gtimg.com/2014/pics/hv1/105/48/1641/106718370.jpg" src="http://img1.gtimg.com/2014/pics/hv1/105/48/1641/106718370.jpg"></span><span class="name">智利</span><span class="score"></span></li>
+                                                    </ul>
+                                                    <div class="des">
+                                                        <p>6月29日</p>
+                                                        <p>00:00</p>
+                                                        <p class="state">4-3</p>
+                                                    </div>
+                                                </div>
+                                                <div class="item not_start mt25">
+                                                    <span class="num">50</span>
+                                                    <ul class="country_list">
+                                                        <li class="first"><span class="flag"><img _src="http://img1.gtimg.com/2014/pics/hv1/193/48/1641/106718458.jpg" src="http://img1.gtimg.com/2014/pics/hv1/193/48/1641/106718458.jpg"></span><span class="name">哥伦比亚</span><span class="score"></span></li>
+                                                        <li><span class="flag"><img _src="http://img1.gtimg.com/2014/pics/hv1/194/48/1641/106718459.jpg" src="http://img1.gtimg.com/2014/pics/hv1/194/48/1641/106718459.jpg"></span><span class="name">乌拉圭</span><span class="score"></span></li>
+                                                    </ul>
+                                                    <div class="des">
+                                                        <p>6月29日</p>
+                                                        <p>04:00</p>
+                                                        <p class="state">2-0</p>
+                                                    </div>
+                                                </div>
+                                                <div class="item not_start mt36">
+                                                    <span class="num">51</span>
+                                                    <ul class="country_list">
+                                                        <li class="first"><span class="flag"><img _src="http://img1.gtimg.com/2014/pics/hv1/35/49/1641/106718555.jpg" src="http://img1.gtimg.com/2014/pics/hv1/35/49/1641/106718555.jpg"></span><span class="name">荷兰</span><span class="score"></span></li>
+                                                        <li><span class="flag"><img _src="http://img1.gtimg.com/2014/pics/hv1/36/49/1641/106718556.jpg" src="http://img1.gtimg.com/2014/pics/hv1/36/49/1641/106718556.jpg"></span><span class="name">墨西哥</span><span class="score"></span></li>
+                                                    </ul>
+                                                    <div class="des">
+                                                        <p>6月30日</p>
+                                                        <p>00:00</p>
+                                                        <p class="state">2-1</p>
+                                                    </div>
+                                                </div>
+                                                <div class="item not_start mt25">
+                                                    <span class="num">52</span>
+                                                    <ul class="country_list">
+                                                        <li class="first"><span class="flag"><img _src="http://img1.gtimg.com/2014/pics/hv1/64/49/1641/106718584.jpg" src="http://img1.gtimg.com/2014/pics/hv1/64/49/1641/106718584.jpg"></span><span class="name">哥斯达黎加</span><span class="score"></span></li>
+                                                        <li><span class="flag"><img _src="http://img1.gtimg.com/2014/pics/hv1/65/49/1641/106718585.jpg" src="http://img1.gtimg.com/2014/pics/hv1/65/49/1641/106718585.jpg"></span><span class="name">希腊</span><span class="score"></span></li>
+                                                    </ul>
+                                                    <div class="des">
+                                                        <p>6月30日</p>
+                                                        <p>04:00</p>
+                                                        <p class="state">6-4</p>
+                                                    </div>
+                                                </div>
+                                                <div class="item not_start mt36">
+                                                    <span class="num">53</span>
+                                                    <ul class="country_list">
+                                                        <li class="first"><span class="flag"><img _src="http://img1.gtimg.com/2014/pics/hv1/146/49/1641/106718666.jpg" src="http://img1.gtimg.com/2014/pics/hv1/146/49/1641/106718666.jpg"></span><span class="name">法国</span><span class="score"></span></li>
+                                                        <li><span class="flag"><img _src="http://img1.gtimg.com/2014/pics/hv1/149/49/1641/106718669.jpg" src="http://img1.gtimg.com/2014/pics/hv1/149/49/1641/106718669.jpg"></span><span class="name">尼日利亚</span><span class="score"></span></li>
+                                                    </ul>
+                                                    <div class="des">
+                                                        <p>7月1日</p>
+                                                        <p>00:00</p>
+                                                        <p class="state">2-0</p>
+                                                    </div>
+                                                </div>
+                                                <div class="item not_start mt25">
+                                                    <span class="num">54</span>
+                                                    <ul class="country_list">
+                                                        <li class="first"><span class="flag"><img _src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg" src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg"></span><span class="name">德国</span><span class="score"></span></li>
+                                                        <li><span class="flag"><img _src="http://img1.gtimg.com/2014/pics/hv1/185/49/1641/106718705.jpg" src="http://img1.gtimg.com/2014/pics/hv1/185/49/1641/106718705.jpg"></span><span class="name">阿尔及利亚</span><span class="score"></span></li>
+                                                    </ul>
+                                                    <div class="des">
+                                                        <p>7月1日</p>
+                                                        <p>04:00</p>
+                                                        <p class="state">2-1</p>
+                                                    </div>
+                                                </div>
+                                                <div class="item not_start mt36">
+                                                    <span class="num">55</span>
+                                                    <ul class="country_list">
+                                                        <li class="first"><span class="flag"><img _src="http://img1.gtimg.com/2014/pics/hv1/198/49/1641/106718718.jpg" src="http://img1.gtimg.com/2014/pics/hv1/198/49/1641/106718718.jpg"></span><span class="name">阿根廷</span><span class="score"></span></li>
+                                                        <li><span class="flag"><img _src="http://img1.gtimg.com/2014/pics/hv1/199/49/1641/106718719.jpg" src="http://img1.gtimg.com/2014/pics/hv1/199/49/1641/106718719.jpg"></span><span class="name">瑞士</span><span class="score"></span></li>
+                                                    </ul>
+                                                    <div class="des">
+                                                        <p>7月2日</p>
+                                                        <p>00:00</p>
+                                                        <p class="state">1-0</p>
+                                                    </div>
+                                                </div>
+                                                <div class="item not_start mt25">
+                                                    <span class="num">56</span>
+                                                    <ul class="country_list">
+                                                        <li class="first"><span class="flag"><img _src="http://img1.gtimg.com/2014/pics/hv1/220/49/1641/106718740.jpg" src="http://img1.gtimg.com/2014/pics/hv1/220/49/1641/106718740.jpg"></span><span class="name">比利时</span><span class="score"></span></li>
+                                                        <li><span class="flag"><img _src="http://img1.gtimg.com/2014/pics/hv1/225/49/1641/106718745.jpg" src="http://img1.gtimg.com/2014/pics/hv1/225/49/1641/106718745.jpg"></span><span class="name">美国</span><span class="score"></span></li>
+                                                    </ul>
+                                                    <div class="des">
+                                                        <p>7月2日</p>
+                                                        <p>04:00</p>
+                                                        <p class="state">2-1</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+    			                        </div>
+    		                        </div>
+                        	    </div>
+                                <div class="conitem two" style="display: none;">
+    	                        	<div id="wrap_box_2">
+    		                        	<div id="scroller_2" style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+    			                        	<img class="bg" _src="http://mat1.gtimg.com/sports/worldcup2014/match/line2.png" src="http://mat1.gtimg.com/sports/worldcup2014/match/line2.png">
+    			                        	<div class="items_box">
+    				                        	<div class="item not_start">
+    					                        	<span class="num">57</span>
+    					                        	<ul class="country_list">
+    					                        		<li class="first"><span class="flag"><img _src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg" src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg"></span><span class="name">巴西</span><span class="score"></span></li>
+    					                        		<li><span class="flag"><img _src="http://img1.gtimg.com/2014/pics/hv1/193/48/1641/106718458.jpg" src="http://img1.gtimg.com/2014/pics/hv1/193/48/1641/106718458.jpg"></span><span class="name">哥伦比亚</span><span class="score"></span></li>
+    					                        	</ul>
+    					                        	<div class="des">
+    						                        	<p>7月5日</p>
+    						                        	<p>04:00</p>
+    						                        	<p class="state">2-1</p>
+    					                        	</div>
+    				                        	</div>
+    				                        	<div class="item not_start mt25">
+    					                        	<span class="num">58</span>
+    					                        	<ul class="country_list">
+    					                        		<li class="first"><span class="flag"><img _src="http://img1.gtimg.com/2014/pics/hv1/146/49/1641/106718666.jpg" src="http://img1.gtimg.com/2014/pics/hv1/146/49/1641/106718666.jpg"></span><span class="name">法国</span><span class="score"></span></li>
+    					                        		<li><span class="flag"><img _src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg" src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg"></span><span class="name">德国</span><span class="score"></span></li>
+    					                        	</ul>
+    					                        	<div class="des">
+    						                        	<p>7月5日</p>
+    						                        	<p>00:00</p>
+    						                        	<p class="state">0-1</p>
+    					                        	</div>
+    				                        	</div>
+    				                        	<div class="item not_start mt36">
+    					                        	<span class="num">59</span>
+    					                        	<ul class="country_list">
+    					                        		<li class="first"><span class="flag"><img _src="http://img1.gtimg.com/2014/pics/hv1/35/49/1641/106718555.jpg" src="http://img1.gtimg.com/2014/pics/hv1/35/49/1641/106718555.jpg"></span><span class="name">荷兰</span><span class="score"></span></li>
+    					                        		<li><span class="flag"><img _src="http://img1.gtimg.com/2014/pics/hv1/64/49/1641/106718584.jpg" src="http://img1.gtimg.com/2014/pics/hv1/64/49/1641/106718584.jpg"></span><span class="name">哥斯达黎加</span><span class="score"></span></li>
+    					                        	</ul>
+    					                        	<div class="des">
+    						                        	<p>7月6日</p>
+    						                        	<p>04:00</p>
+    						                        	<p class="state">4-3</p>
+    					                        	</div>
+    				                        	</div>
+    				                        	<div class="item not_start mt25">
+    					                        	<span class="num">60</span>
+    					                        	<ul class="country_list">
+    					                        		<li class="first"><span class="flag"><img _src="http://f.seals.qq.com/filestore/10006/da/64/87/0/sportlogo/team_1_632.png?v=6" src="http://f.seals.qq.com/filestore/10006/da/64/87/0/sportlogo/team_1_632.png?v=6"></span><span class="name">阿根廷</span><span class="score"></span></li>
+    					                        		<li><span class="flag"><img _src="http://f.seals.qq.com/filestore/10006/da/64/87/0/sportlogo/team_1_360.png?v=6" src="http://f.seals.qq.com/filestore/10006/da/64/87/0/sportlogo/team_1_360.png?v=6"></span><span class="name">比利时</span><span class="score"></span></li>
+    					                        	</ul>
+    					                        	<div class="des">
+    						                        	<p>7月6日</p>
+    						                        	<p>00:00</p>
+    						                        	<p class="state">1-0</p>
+    					                        	</div>
+    				                        	</div>
+    			                        	</div>
+    		                        	</div>
+    		                        </div>
+                        	    </div>
+                                <div class="conitem three" style="display: none;">
+    	                        	<img class="bg" _src="http://mat1.gtimg.com/sports/worldcup2014/match/line3.png" src="http://mat1.gtimg.com/sports/worldcup2014/match/line3.png">
+    	                        	<div class="items_box">
+    		                        	<div class="item not_start">
+    			                        	<span class="num">61</span>
+    			                        	<ul class="country_list">
+    			                        		<li class="first"><span class="flag"><img _src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg" src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg"></span><span class="name">巴西</span><span class="score"></span></li>
+    			                        		<li><span class="flag"><img _src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg" src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg"></span><span class="name">德国</span><span class="score"></span></li>
+    			                        	</ul>
+    			                        	<div class="des">
+    				                        	<p>7月9日</p>
+    				                        	<p>04:00</p>
+    				                        	<p class="state">1-7</p>
+    			                        	</div>
+    		                        	</div>
+    		                        	<div class="item not_start mt25">
+    			                        	<span class="num">62</span>
+    			                        	<ul class="country_list">
+    			                        		<li class="first"><span class="flag"><img _src="http://img1.gtimg.com/2014/pics/hv1/35/49/1641/106718555.jpg" src="http://img1.gtimg.com/2014/pics/hv1/35/49/1641/106718555.jpg"></span><span class="name">荷兰</span><span class="score"></span></li>
+    			                        		<li><span class="flag"><img _src="http://f.seals.qq.com/filestore/10006/da/64/87/0/sportlogo/team_1_632.png?v=6" src="http://f.seals.qq.com/filestore/10006/da/64/87/0/sportlogo/team_1_632.png?v=6"></span><span class="name">阿根廷</span><span class="score"></span></li>
+    			                        	</ul>
+    			                        	<div class="des">
+    				                        	<p>7月10日</p>
+    				                        	<p>04:00</p>
+    				                        	<p class="state">0-0(2-4)</p>
+    			                        	</div>
+    		                        	</div>
+    	                        	</div>
+                        	    </div>
+                                <div class="conitem four" style="display:none;">
+                                    <img src="http://mat1.gtimg.com/sports/worldcup2014/match/line4.png" alt="" class="bg">
+                                    <div class="items_box">
+                                        <div class="item not_start">
+                                            <span class="num">64</span>
+                                            <ul class="country_list">
+                                                <li class="first">
+                                                    <span class="flag">
+                                                        <img _src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg" src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg">
+                                                    </span>
+                                                    <span class="name">德国</span>
+                                                    <span class="score"></span>
+                                                </li>
+                                                <li>
+                                                    <span class="flag">
+                                                        <img _src="http://f.seals.qq.com/filestore/10006/da/64/87/0/sportlogo/team_1_632.png?v=6" src="http://f.seals.qq.com/filestore/10006/da/64/87/0/sportlogo/team_1_632.png?v=6">
+                                                    </span>
+                                                    <span class="name">阿根廷</span>
+                                                    <span class="score"></span>
+                                                </li>
+                                            </ul>
+                                            <div class="des">
+                                                <p>7月14日</p>
+                                                <p>03:00</p>
+                                                <p class="state">1-0</p>
+                                            </div>
+                                        </div>
+                                        <div class="item not_start mt25">
+			                        	<span class="num">63</span>
+    			                        	<ul class="country_list">
+    			                        		<li class="first"><span class="flag"><img _src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg" src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg"></span><span class="name">巴西</span><span class="score"></span></li>
+    			                        		<li>
+                                                    <span class="flag">
+                                                        <img _src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg" src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg">
+                                                    </span>
+                                                    <span class="name">荷兰</span>
+                                                    <span class="score"></span>
+                                                </li>
+    			                        	</ul>
+    			                        	<div class="des">
+    				                        	<p>7月13日</p>
+    				                        	<p>04:00</p>
+    				                        	<p class="state">0-3</p>
+    			                        	</div>
+		                        	    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="layer layer3" id="layer3" style="position:absolute;transform:rotateX(180deg) translateZ(333.5px);">
+                    <div class="inner">
+                        <div class="hd hd_bd">
+                            <span class="tit">分组赛程</span>
+                        </div>
+                        <div class="bd">
+                            <ul class="list cf">
+                                <li class="item itemA"><span class="group">A</span>组</li>
+                                <li class="item itemB"><span class="group">B</span>组</li>
+                                <li class="item itemC"><span class="group">C</span>组</li>
+                                <li class="item itemD"><span class="group">D</span>组</li>
+                                <li class="item itemlogo"><span class="group"></span></li>
+                                <li class="item itemE"><span class="group">E</span>组</li>
+                                <li class="item itemF"><span class="group">F</span>组</li>
+                                <li class="item itemG"><span class="group">G</span>组</li>
+                                <li class="item itemH"><span class="group">H</span>组</li>
+                            </ul>
+                        </div>
+                        <div class="swipe_tip"></div>
+                    </div>
+                </section>
+                <section class="layer layer4" id="layer4" style="position:absolute;transform:rotateX(-270deg) translateZ(333.5px);">
+                    <div class="inner">
+                        <div class="hd hd_bd">
+                            <span class="tit">世界杯完全赛程</span>
+                        </div>
+                        <div class="timeline">
+                            <div class="timeline_bd">
+                                <div class="time_scale">
+                                    <i class="arr_top"></i>
+                                    <div id="goHome" class="go_home"></div>
+                                </div>
+                                <div class="linebox" id="wrapper">
+                                    <div class="lineinner" id="scroller" style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                                        <ul>
+                                            <li data-item="0" class="item  delay0">
+                                                <i class="dot"></i>
+                                                <div class="day">
+                                                    <time>6月13日</time>
+                                                    <p>星期五</p>
+                                                </div>
+                                                <div class="box ">
+                                                    <dl class="cf">
+                                                        <dt class="time fl">4:00</dt>
+                                                        <dd class="text ">
+                                                            <div class="tit">
+                                                                <span class="num">01</span>
+                                                                巴西 3-1 克罗地亚
+                                                                <span class="hot">HOT</span>
+                                                            </div>
+                                                            凌晨起床看完揭幕战，洗洗去上班。
+                                                        </dd>
+                                                    </dl>
+                                                </div>
+                                            </li>
+                                            <li data-item="1" class="item  delay1">
+                                                <i class="dot"></i>
+                                                <div class="day">
+                                                    <time>6月14日</time>
+                                                    <p>星期六</p>
+                                                </div>
+                                                <div class="box ">
+                                                    <dl class="cf">
+                                                        <dt class="time fl">0:00</dt>
+                                                        <dd class="text  text2">
+                                                            <div class="tit">
+                                                                <span class="num">02</span>
+                                                                墨西哥 1-0 喀麦隆
+                                                            </div>
+                                                        </dd>
+                                                    </dl>
+                                                    <dl class="cf">
+                                                        <dt class="time fl">3:00</dt>
+                                                        <dd class="text ">
+                                                            <div class="tit">
+                                                                <span class="num">03</span>
+                                                                西班牙 1-5 荷兰<span class="hot">HOT</span>
+                                                            </div>
+                                                            周末真好，约上好友刷夜看球，清晨5点开始补觉。
+                                                        </dd>
+                                                    </dl>
+                                                    <dl class="cf">
+                                                        <dt class="time fl">6:00</dt>
+                                                        <dd class="text  text2">
+                                                            <div class="tit">
+                                                                <span class="num">04</span>
+                                                                智利 3-1 澳大利亚
+                                                            </div>
+                                                        </dd>
+                                                    </dl>
+                                                </div>
+                                            </li>
+                                            <li data-item="2" class="item  delay2">
+                                                <i class="dot"></i>
+                                                <div class="day">
+                                                    <time>6月15日</time>
+                                                    <p>星期日</p>
+                                                </div>
+                                                <div class="box ">
+                                                    <dl class="cf">
+                                                        <dt class="time fl">0:00</dt>
+                                                        <dd class="text  text2">
+                                                            <div class="tit">
+                                                                <span class="num">05</spa
+                                                                哥伦比亚 3-0 希腊
+                                                            </div>
+                                                        </dd>
+                                                    </dl>
+                                                    <dl class="cf">
+                                                        <dt class="time fl">3:00</dt>
+                                                        <dd class="text  text2">
+                                                            <div class="tit">
+                                                                <span class="num">06</span>
+                                                                乌拉圭 1-3 哥斯达黎加
+                                                            </div>
+                                                        </dd>
+                                                    </dl>
+                                                    <dl class="cf">
+                                                        <dt class="time fl">6:00</dt>
+                                                        <dd class="text ">
+                                                            <div class="tit">
+                                                                <span class="num">07</span>
+                                                                英格兰 1-2 意大利<span class="hot">HOT</span>
+                                                            </div>
+                                                            周日起大早，英意大战绝对不能错过。
+                                                        </dd>
+                                                    </dl>
+                                                    <dl class="cf">
+                                                        <dt class="time fl">9:00</dt>
+                                                        <dd class="text ">
+                                                            <div class="tit">
+                                                                <span class="num">08</span>
+                                                                科特迪瓦 2-1 日本<span class="hot">HOT</span>
+                                                            </div>
+                                                            英意大战没过瘾，接着研究日本队.
+                                                        </dd>
+                                                    </dl>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ft cf" style="display:block;">
+                            <span class="fl"><img width="98" height="16" src="http://mat1.gtimg.com/sports/worldcup2014/match/sports_logo.png" alt="腾讯体育"></span>
+                            <span class="fr"><img width="120" height="13" src="http://mat1.gtimg.com/sports/worldcup2014/match/ued_wfe.png" alt="UED-WFE"></span>
+                        </div>
+                        <div class="zh_bar">
+                            <img width="320" src="http://mat1.gtimg.com/sports/worldcup2014/match/zh_bar_3.png" alt="">
+                        </div>
+                        <div class="swipe_tip"></div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="story" style="display:none;">
+        <div class="storyshadow"></div>
+        <div class="storydialog"></div>
+        <div class="full_screen dialog_index opacity">
+            <img src="http://mat1.gtimg.com/sports/worldcup2014/match/zh_img_new_0624.jpg" width="320">
+            <a href="" class="link">
+                <img width="320" src="http://mat1.gtimg.com/sports/worldcup2014/match/zh_link_0624.png" alt="">
+            </a>
+            <span class="close"></span>
+        </div>
+    </div>
+<script src="libs/alloy_finger/alloy_finger.js"></script>
+<script src="libs/alloy_finger/transform.js"></script>
+<script src="http://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+
+        function getCurrentPage() {
+            var current = 0;
+            var screenClassStr = $('.screen').attr('class');
+            // console.log(screenClass);
+            if(screenClassStr.indexOf('screen_x') < 0) {
+                current = 0;
+            } else if (screenClassStr.indexOf('screen_x90') >= 0) {
+                current = 1;
+            } else if (screenClassStr.indexOf('screen_x180') >= 0) {
+                current = 2;
+            } else if (screenClassStr.indexOf('screen_x270') >= 0) {
+                current = 3;
+            }
+            return current;
+        }
+
+        $('.layer,.screen,.storyshadow').css('width',window.innerWidth);
+        $('.layer,.screen,.storyshadow').css('height',window.innerHeight);
+        // $('.layer1 .btn').click(function(){
+        //     if($(this).hasClass('btn4')){
+        //         return;
+        //     }
+        //     $(this).addClass('btnAnimate');
+        //     setTimeout(function(){
+        //         $(self).removeClass('btnAnimate');
+        //         isBtnAnimate = false;
+        //     },2000);
+        // });
+        var timer = setTimeout(function(){
+            $('.load').css('display','none');
+            $('.global').css('display','block');
+        },500);
+
+        $('.btn').click(function(){
+            $(this).addClass('btnAnimate');
+            if($(this).hasClass('btn1')) {
+                $('.screen').attr('class','screen ease screen_x90');
+                $('.layer2 .inner').addClass('animate');
+            } else if($(this).hasClass('btn2')) {
+                $('.screen').attr('class','screen ease screen_x180');
+                $('.layer3 .inner').addClass('animate');
+            } else if($(this).hasClass('btn3')) {
+                $('.screen').attr('class','screen ease screen_x270');
+                $('.layer3 .inner').addClass('animate');
+            }
+
+            if($(this).hasClass('btn4')) {
+                $('.story').css('display','block');
+                $('.storyshadow').css('display','block');
+                $('.full_screen').addClass('animated').addClass('bounceIn');
+            }
+        });
+
+        $('.close').click(function(){
+            $('.story').css('display','none');
+            $('.storyshadow').css('display','none');
+        });
+
+        $('#js_tab_menu ul li').click(function(){
+            // $('#js_tab_menu ul li.on').removeClass('on');
+            $(this).addClass('on');
+            $(this).siblings().removeClass('on');
+
+            var index = $(this).index();
+            $('.conitem').css('display','none');
+            $('.conitem').eq(index).css('display','block');
+
+        });
+
+        var section = document.querySelector('.screen');
+
+        var gesture = new AlloyFinger(section,{
+            swipe:function(evt) {
+                // console.log('swipe'+evt.direction);
+                var current = getCurrentPage();
+                var direction = evt.direction;
+                if(direction == 'Up') {
+                    switch (current) {
+                        case 0:
+                            $('.btn1').click();
+                            break;
+                        case 1:
+                            $('.btn2').click();
+                            break;
+                        case 2:
+                            $('.btn3').click();
+                            break;
+                        case 3:
+                            $('.screen').attr('class','screen ease');
+                            break;
+                        default:
+                    }
+                } else if (direction == 'Down') {
+                    switch (current) {
+                        case 0:
+                            $('.btn3').click();
+                            break;
+                        case 1:
+                            $('.screen').attr('class','screen ease');
+                            break;
+                        case 2:
+                            $('.btn1').click();
+                            break;
+                        case 3:
+                            $('.btn2').click();
+                            break;
+                        default:
+                    }
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
